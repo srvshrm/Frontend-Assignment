@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoreService } from '../core.service';
+import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -16,10 +17,11 @@ export class HeaderComponent implements OnInit {
   private query = '';
   search(event:any){
     this.query = event.target.value
-    this.coreService.fetchData(this.query).subscribe(
-      (data)=>{
-        this.coreService.setData(data)
-      }
-    )
+    if(this.query){
+      this.coreService.fetchData(this.query).pipe(debounceTime(2000)).subscribe(
+        (data)=>{
+          this.coreService.setData(data)
+        });
+    }
   }
 }

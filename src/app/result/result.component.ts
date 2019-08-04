@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CoreService } from '../core.service';
 
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-result',
@@ -13,6 +15,7 @@ export class ResultComponent implements OnInit {
 
   public userData:any;
   public repoData: any;
+  public buttonState: boolean = false;
   ngOnInit() {
     this.coreService.getData().subscribe(
       (data)=>{
@@ -26,8 +29,14 @@ export class ResultComponent implements OnInit {
       (data)=> {
         this.repoData = data;
         console.log(data);
-      }
-    )
+        this.buttonState = true;
+      });
   }
 
+  public collapse() {
+    this.buttonState = false;
+    this.repoData = null;
+  }
+
+  
 }
