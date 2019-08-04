@@ -1,0 +1,16 @@
+ul{
+    margin-right: 10%;
+    margin-top: 1%;
+}
+
+.search{
+    display: flex;
+}
+.symbol{
+    position: relative;
+    left: -25px;
+    color: grey;
+    margin-top: 4%;
+}
+
+
