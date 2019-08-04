@@ -9,17 +9,22 @@ export class CoreService {
 
   constructor(private http: HttpClient) { }
 
-  public url = "https://api.github.com/search/users?q=";
+  private url = "https://api.github.com/search/users?q=";
+  private repoUrl = "https://api.github.com/users/"; 
   private data$: Subject<any> = new Subject<any>();
-  private result = [];
 
   fetchData(query:string):Observable<any>{
     return this.http.get(this.url+query)
   }
 
+  fetchRepoData(username: string) {
+    return this.http.get(this.repoUrl+username+'/repos')
+  }
+
   setData(data) {
-    this.result.push(data)
-    this.data$.next(this.result);
+    let result = [];
+    result.push(data)
+    this.data$.next(result);
   }
 
   getData(){

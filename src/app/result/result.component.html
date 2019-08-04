@@ -1,1 +1,34 @@
-{{userData|json}}
+<div *ngIf="userData">
+  Total Results: {{userData[0].total_count}}
+  <ng-container>
+
+  </ng-container>
+  <div class="card" *ngFor="let user of userData[0].items; let i = index">
+    <div class="row">
+      <div class="col-md-3">
+        <img src="{{user.avatar_url}}" alt="Avatar" class="img-circle">
+      </div>
+      <div class="col-md-6 container">
+        <h4>
+          <b>{{user.login}}</b>
+        </h4>
+        <p>Profile URL: {{user.html_url}}</p>
+      </div>
+      <div class="col-md-3 container">
+        <button type="button" class="btn btn-default" (click)="repoDetails(user.login)">Details</button>
+      </div>
+      <div class="row" *ngIf="repoData">
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <tbody>
+              <tr *ngFor="let repo of repoData">
+                <td>{{repo.name}}</td>
+                <td>{{repo.language}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
