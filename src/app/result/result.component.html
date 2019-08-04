@@ -3,10 +3,10 @@
     <div class="col-md-2">
     </div>
     <div class="col-md-8">
-      <div style = "margin-bottom: 1em">
-          <span>Total Results: {{userData[0].total_count}}</span>
+      <div style="margin-bottom: 1em">
+        <span>Total Results: {{userData[0].total_count}}</span>
       </div>
-      <div class="card result" *ngFor="let user of userData[0].items; let i = index">
+      <div class="card result" *ngFor="let user of userData[0].items | paginate: {itemsPerPage: 3, currentPage: p}">
         <div class="row">
           <div class="col-md-3">
             <img src="{{user.avatar_url}}" alt="Avatar" class="img-circle">
@@ -34,6 +34,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class = "pagination pull-right">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
     </div>
   </div>

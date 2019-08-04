@@ -16,10 +16,10 @@ export class ResultComponent implements OnInit {
   public userData:any;
   public repoData: any;
   public buttonState: boolean = false;
+  p: number = 1;
   ngOnInit() {
     this.coreService.getData().subscribe(
       (data)=>{
-        console.log(data);
         this.userData = data;
       });
   }
@@ -28,7 +28,6 @@ export class ResultComponent implements OnInit {
     this.coreService.fetchRepoData(value).subscribe(
       (data)=> {
         this.repoData = data;
-        console.log(data);
         this.buttonState = true;
       });
   }
@@ -37,6 +36,5 @@ export class ResultComponent implements OnInit {
     this.buttonState = false;
     this.repoData = null;
   }
-
   
 }

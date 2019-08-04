@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
   }
   
   private query = '';
+  userData = []
+  
   search(event:any){
     this.query = event.target.value
     if(this.query){
@@ -24,4 +26,5 @@ export class HeaderComponent implements OnInit {
         });
     }
   }
+
 }

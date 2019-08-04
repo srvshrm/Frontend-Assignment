@@ -14,12 +14,10 @@ export class CoreService {
   private data$: Subject<any> = new Subject<any>();
 
   fetchData(query:string):Observable<any>{
-    console.log(query)
     return this.http.get(this.url+query);
   }
 
   fetchRepoData(username: string) {
-    console.log(username);
     return this.http.get(this.repoUrl+username+'/repos')
   }
 
