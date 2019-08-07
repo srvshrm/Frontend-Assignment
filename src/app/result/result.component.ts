@@ -15,7 +15,7 @@ export class ResultComponent implements OnInit {
 
   public userData:any;
   public repoData: any;
-  public buttonState: boolean = false;
+  public buttonState:any[] = [];
   p: number = 1;
   ngOnInit() {
     this.coreService.getData().subscribe(
@@ -24,16 +24,16 @@ export class ResultComponent implements OnInit {
       });
   }
 
-  public repoDetails(value) {
+  public repoDetails(value, index) {
     this.coreService.fetchRepoData(value).subscribe(
       (data)=> {
         this.repoData = data;
-        this.buttonState = true;
+        this.buttonState[index] = true;
       });
   }
 
-  public collapse() {
-    this.buttonState = false;
+  public collapse(index) {
+    this.buttonState[index] = false;
     this.repoData = null;
   }
   
